@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Quiz Set Posted</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eeeeee;
+      }
+      .header img {
+        max-width: 100px;
+      }
+      .content {
+        padding: 20px 0;
+      }
+      .content h1 {
+        color: #02a9ea;
+      }
+      .content p {
+        line-height: 1.6;
+      }
+      .cta-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #02a9ea;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .cta-button:hover {
+        background-color: #028bbd;
+      }
+      .footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eeeeee;
+        text-align: center;
+        font-size: 12px;
+        color: #999999;
+      }
+      .footer a {
+        color: #999999;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <img
+          src="https://via.placeholder.com/100x100.png?text=Logo"
+          alt="Organization Logo"
+        />
+        Quizzy
+      </div>
+      <div class="content">
+        <h1>New Quiz Set Available!</h1>
+        <p>Dear Student,</p>
+        <p>
+          We are excited to announce that a new quiz set has been posted by your
+          organization. Test your knowledge and challenge yourself with our
+          latest quiz. Don't miss the opportunity to earn more points!
+        </p>
+        <p>Here is the code: <b>{{code}}</b></p>
+      </div>
+      <div class="footer">
+        <p>
+          If you have any questions, feel free to
+          <a href="mailto:noreplyquizzy5@gmail.com">contact us</a>.
+        </p>
+        <p>&copy; 2024 Quizzy. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
