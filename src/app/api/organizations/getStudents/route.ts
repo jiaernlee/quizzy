@@ -16,27 +16,33 @@ export async function GET(request: Request) {
     }
 
     const userObjectId = new ObjectId(userId);
-
     const user = await userCollection.findOne({
       _id: userObjectId,
       role: "organization",
     });
 
     if (!user) {
-      return "User not found";
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const orgId = user.organization;
-
     const students = await userCollection
       .find({ role: "student", organization: orgId })
       .toArray();
 
-    if (!students) return "Students not found";
+    if (students.length === 0) {
+      return NextResponse.json(
+        { error: "Students not found" },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json(students);
   } catch (e) {
     console.error("Error", e);
-    return NextResponse.json({ error: e }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

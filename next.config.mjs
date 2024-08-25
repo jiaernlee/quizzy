@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -18,6 +22,15 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "handlebars/runtime": "handlebars/dist/cjs/handlebars.runtime",
+      handlebars: "handlebars/dist/cjs/handlebars.runtime",
+    };
+
+    return config;
   },
 };
 

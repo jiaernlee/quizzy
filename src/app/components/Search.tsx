@@ -71,6 +71,7 @@ const Search: React.FC<SearchProps> = ({ placeholder, user }) => {
           {results.map((result) => (
             <Link
               href={`/quizSet?quizSetId=${result._id}&role=${user.role}&id=${user.id}`}
+              key={result.id}
             >
               <div
                 key={result.id}

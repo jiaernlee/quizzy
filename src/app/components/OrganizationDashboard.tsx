@@ -258,7 +258,9 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
   return (
     <div className="dark:bg-[#000300] px-6 mx-auto">
       <header className="mb-6 d-flex p-6 justify-between  dark:text-white">
-        <h1 className="text-3xl font-bold my-2 ">{user.name}'s Dashboard</h1>
+        <h1 className="text-3xl font-bold my-2 ">
+          {user.name}&apos;s Dashboard
+        </h1>
       </header>
       <div className="flex flex-col-reverse  lg:grid lg:grid-cols-5 gap-4 px-4 pb-4">
         <div className="border border-[#ff01fb] dark:bg-transparent bg-[#ff01fb] text-white lg:col-span-2 col-span-1 flex justify-between w-full p-4 rounded-lg">

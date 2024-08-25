@@ -134,7 +134,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
             <ul className="flex overflow-x-scroll gap-2">
               {attempted.map((quiz) => {
                 return (
-                  <li className="flex items-center">
+                  <li className="flex items-center" key={quiz._id}>
                     <div className="transform scale-75 origin-top-left md:scale-100 bg-white hover:bg-gray-50 rounded-lg my-3 p-2 py-6 flex items-center cursor-pointer transition duration-500 hover:scale-105">
                       <Link
                         href={`/quizSet?quizSetId=${quiz._id}&role=${user.role}&id=${user.id}`}
