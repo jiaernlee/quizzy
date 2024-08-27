@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense } from "react";
 import CreateQuiz from "../components/CreateQuiz";
 import { DotLoader } from "react-spinners";
