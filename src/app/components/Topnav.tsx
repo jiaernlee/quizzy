@@ -16,7 +16,7 @@ export default async function Topnav() {
           <small>Quizzy D: </small>
         </Link>
         <div className="flex justify-end gap-5">
-          {session?.user.role ? (
+          {session ? (
             <>
               <Link href="/dashboard">
                 <div className="flex gap-1 text-sm items-center text-black dark:text-white">

@@ -15,6 +15,7 @@ import UserChart from "./UserChart";
 import Link from "next/link";
 import Leaderboard from "./Leaderboard";
 import { User } from "../dashboard/page";
+import { DotLoader } from "react-spinners";
 
 interface UserDashboardProps {
   user: NextAuthUser;
@@ -42,6 +43,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [quizSetId, setQuizSetId] = useState<string>("");
   const [quizStats, setQuizStats] = useState<QuizStats[]>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchAttemptedQuizSets = async () => {
@@ -54,6 +56,8 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
         if (!res.ok) console.log(data.error, "saveattempts");
       } catch (e) {
         console.error("error getting quiz attempts", e);
+      } finally {
+        setLoading(false);
       }
     };
     const fetchQuizStats = async () => {
@@ -135,7 +139,9 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
               Play again
             </h1>
             <ul className="flex overflow-x-auto gap-2">
-              {attempted.length > 0 ? (
+              {loading ? (
+                <DotLoader />
+              ) : attempted.length > 0 ? (
                 attempted.map((quiz) => {
                   return (
                     <li className="flex items-center" key={quiz._id}>

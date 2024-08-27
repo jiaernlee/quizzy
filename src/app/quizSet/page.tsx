@@ -370,7 +370,7 @@ const CreateQuiz = () => {
             return (
               <div className="card md:flex gap-5 mb-3" key={i}>
                 <h1 className="font-bold text-3xl text-white">{i + 1}</h1>
-                <div className="justify-center gap-3">
+                <div className="justify-center md:justify-start gap-3">
                   <h5 className="font-bold mb-3">{question.question}</h5>
                   <ul className="flex flex-col md:flex-row gap-3 my-3 md:my-0">
                     {question.options.map((option, i) => {

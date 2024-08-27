@@ -265,7 +265,7 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
       <div className="flex flex-col-reverse  lg:grid lg:grid-cols-5 gap-4 px-4 pb-4">
         <div className="border border-[#ff01fb] dark:bg-transparent bg-[#ff01fb] text-white lg:col-span-2 col-span-1 flex justify-between w-full p-4 rounded-lg">
           <div className="flex flex-col w-full pb-4">
-            <p className="text-2xl font-bold">{quizSets.length}</p>
+            <p className="text-2xl font-bold">{quizSets.length || 0}</p>
             <p>Total number of QuizSets</p>
           </div>
           <p className="border-2 border-[#02a9ea] dark:bg-transparent bg-white flex justify-center items-center p-2 rounded-sm">
@@ -276,7 +276,7 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
         </div>
         <div className="border border-[#ff01fb] dark:bg-transparent bg-[#ff01fb] text-white lg:col-span-2 col-span-1 flex justify-between w-full p-4 rounded-lg">
           <div className="flex flex-col w-full pb-4">
-            <p className="text-2xl font-bold">{students.length}</p>
+            <p className="text-2xl font-bold">{students.length || 0}</p>
             <p>Total number of Students</p>
           </div>
           <p className="border-2 border-[#02a9ea] dark:bg-transparent bg-white flex justify-center items-center p-2 rounded-sm">
