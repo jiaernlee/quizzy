@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 import QuizAttemptModel from "../../../../models/QuizAttempt";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 
 export async function GET(request: Request) {
   try {
@@ -23,6 +24,9 @@ export async function GET(request: Request) {
 
     return NextResponse.json(quizAttempts);
   } catch (e) {
+    if (isDynamicServerError(e)) {
+      throw e;
+    }
     console.error("Error fetching quiz attempts:", e);
     return NextResponse.json(
       { error: "Internal Server Error" },
