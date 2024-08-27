@@ -3,6 +3,7 @@
 import { AiOutlineAim } from "react-icons/ai";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export const JoinWithCode = () => {
   const [code, setCode] = useState("");
@@ -18,6 +19,12 @@ export const JoinWithCode = () => {
           router.push(`/quizPage?quiz=${data.quizSet._id}`);
         } else {
           console.log("No quiz set found with this code.");
+          Swal.fire({
+            title: "Oops",
+            text: "No quiz set found with this code",
+            timer: 3000,
+            icon: "question",
+          });
         }
       } catch (error) {
         console.error("Error fetching quiz set:", error);
@@ -26,13 +33,16 @@ export const JoinWithCode = () => {
   };
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0 w-full">
+    <div className="relative flex flex-1">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
       <input
-        className="peer block w-100 rounded-md border border-[#ff01fb] py-[9px] pl-10 text-sm text-black"
-        placeholder="Enter code and press 'Enter'"
+        type="text"
+        pattern="\d{5}"
+        maxLength={5}
+        className="peer block w-full rounded-md border border-[#ff01fb] py-[9px] pl-10 text-sm text-black"
+        placeholder="Join by code"
         value={code}
         onChange={(e) => setCode(e.target.value)}
         onKeyDown={handleKeyPress}

@@ -4,7 +4,12 @@ import { join } from "path";
 import clientPromise from "./mongodb";
 import handlebars from "handlebars";
 
-const sendMail = async (orgId: string, code: string) => {
+const sendMail = async (
+  orgId: string,
+  code: string,
+  title: string,
+  description: string
+) => {
   await clientPromise;
 
   const emailTemplatePath = join(process.cwd(), "emails/email-template.html");
@@ -37,7 +42,7 @@ const sendMail = async (orgId: string, code: string) => {
     }
 
     for (const student of students) {
-      const emailHtml = template({ code });
+      const emailHtml = template({ code, title, description });
 
       const mailOptions = {
         from: process.env.NODEMAILER_EMAIL,

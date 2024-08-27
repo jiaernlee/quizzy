@@ -11,6 +11,8 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("userId");
 
+    console.log(userId, "getstats");
+
     if (!userId || !mongoose.Types.ObjectId.isValid(userId as string)) {
       return NextResponse.json({ error: "Invalid userId" }, { status: 400 });
     }

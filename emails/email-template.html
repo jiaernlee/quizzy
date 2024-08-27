@@ -12,6 +12,9 @@
         padding: 0;
         color: #333;
       }
+      h1 {
+        font: bold;
+      }
       .email-container {
         max-width: 600px;
         margin: 0 auto;
@@ -66,13 +69,7 @@
   </head>
   <body>
     <div class="email-container">
-      <div class="header">
-        <img
-          src="https://via.placeholder.com/100x100.png?text=Logo"
-          alt="Organization Logo"
-        />
-        Quizzy
-      </div>
+      <h1>Quizzy</h1>
       <div class="content">
         <h1>New Quiz Set Available!</h1>
         <p>Dear Student,</p>
@@ -81,7 +78,9 @@
           organization. Test your knowledge and challenge yourself with our
           latest quiz. Don't miss the opportunity to earn more points!
         </p>
-        <p>Here is the code: <b>{{code}}</b></p>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+        <p>Code: <b>{{code}}</b></p>
       </div>
       <div class="footer">
         <p>

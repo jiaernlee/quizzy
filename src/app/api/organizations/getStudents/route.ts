@@ -31,10 +31,7 @@ export async function GET(request: Request) {
       .toArray();
 
     if (students.length === 0) {
-      return NextResponse.json(
-        { error: "Students not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "No students found" });
     }
 
     return NextResponse.json(students);

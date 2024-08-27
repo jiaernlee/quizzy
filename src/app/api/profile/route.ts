@@ -97,17 +97,17 @@ export async function PUT(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("userId");
 
+    console.log(name, image);
+
     if (!userId) {
       return NextResponse.json({ error: "Missing user ID" }, { status: 400 });
     }
 
     const userObjectId = new ObjectId(userId);
+    const updateData: { name?: string; image?: string } = {};
 
-    const updateData: Partial<{ name: string; image: string }> = {};
     if (name) updateData.name = name;
     if (image) updateData.image = image;
-
-    console.log(updateData);
 
     if (Object.keys(updateData).length === 0) {
       return NextResponse.json(
@@ -122,15 +122,16 @@ export async function PUT(req: NextRequest) {
       { returnDocument: "after" }
     );
 
-    const user = await usersCollection.findOne({ _id: userObjectId });
-
     if (!result?.value) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json(user);
+    return NextResponse.json(result.value);
   } catch (e: unknown) {
     console.error("Error", e);
-    return NextResponse.json({ error: e }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

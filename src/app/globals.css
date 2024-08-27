@@ -7,5 +7,5 @@ body {
 }
 
 .card {
-  @apply border border-[#ff01fb] dark:bg-transparent bg-[#ff01fb] text-white p-4 rounded-lg shadow-md;
+  @apply border border-[#ff01fb] dark:bg-transparent bg-[#ff01fb] text-center text-white p-12 rounded-lg shadow-md;
 }

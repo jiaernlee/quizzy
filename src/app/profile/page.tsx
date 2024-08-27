@@ -85,6 +85,7 @@ const UserProfile = () => {
 
   const saveEditHandler = async () => {
     try {
+      console.log("imhere");
       if (imageFile) {
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -100,6 +101,7 @@ const UserProfile = () => {
           const imagePath = `/uploads/${result.image}`;
           const updatedDetails = { ...details, image: imagePath };
           setDetails(updatedDetails);
+          console.log(updatedDetails);
 
           try {
             const res = await fetch(`/api/profile?userId=${userId}`, {
@@ -132,6 +134,34 @@ const UserProfile = () => {
           }
         } else {
           alert("Upload failed");
+        }
+      } else {
+        try {
+          const res = await fetch(`/api/profile?userId=${userId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: details.name,
+            }),
+          });
+          console.log(details.name);
+          const data = await res.json();
+          if (data) {
+            setDetails({
+              name: data.name,
+              image: details.image,
+            });
+          } else {
+            console.error("Failed to update profile");
+          }
+        } catch (e) {
+          Swal.fire({
+            title: "Try again later!",
+            text: "Trouble updating user data X(",
+            timer: 5000,
+            icon: "error",
+          });
+          console.error(e);
         }
       }
     } catch (e) {

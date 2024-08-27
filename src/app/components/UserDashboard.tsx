@@ -14,6 +14,7 @@ import {
 import UserChart from "./UserChart";
 import Link from "next/link";
 import Leaderboard from "./Leaderboard";
+import { User } from "../dashboard/page";
 
 interface UserDashboardProps {
   user: NextAuthUser;
@@ -36,6 +37,7 @@ interface QuizStats {
 }
 
 const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
+  console.log(user.id, "from userdashboard");
   const [attempted, setAttempted] = useState<Quiz[]>([]);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [quizSetId, setQuizSetId] = useState<string>("");
@@ -49,21 +51,20 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
         });
         const data = await res.json();
         if (data) setAttempted(data.quizSets);
-        if (!res.ok) console.log(data.error);
+        if (!res.ok) console.log(data.error, "saveattempts");
       } catch (e) {
-        console.error("error saving quiz attempy", e);
+        console.error("error getting quiz attempts", e);
       }
     };
-
     const fetchQuizStats = async () => {
       try {
         const res = await fetch(`/api/users/getQuizStats?userId=${user.id}`);
         const data = await res.json();
         console.log(data);
         setQuizStats(data);
-        if (!res.ok) console.log(data.error);
+        if (!res.ok) console.log(data.error, "savequizstats");
       } catch (e) {
-        console.error("error saving quiz attempy", e);
+        console.error("error saving quiz attempt", e);
       }
     };
 
@@ -83,12 +84,14 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
 
   let data: any = [];
 
-  quizStats?.forEach((stat) => {
-    data = [
-      ...data,
-      { quizSet: stat.quizSet, average: stat.averageCorrectPercentage },
-    ];
-  });
+  if (quizStats) {
+    quizStats?.forEach((stat) => {
+      data = [
+        ...data,
+        { quizSet: stat.quizSet, average: stat.averageCorrectPercentage },
+      ];
+    });
+  }
 
   return (
     <div className="dark:bg-[#000300] px-6 mx-auto bg-white">
@@ -96,7 +99,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
         <h1 className="text-3xl font-bold my-2 flex items-center">
           Dashboard <AiOutlineFire color="#FF5722" className="ms-2" />
         </h1>
-        <div className="md:flex gap-2 grid-cols-3">
+        <div className="flex space-x-2">
           <Search placeholder="Search something ..." user={user} />
           <JoinWithCode />
         </div>
@@ -131,35 +134,39 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
             <h1 className="font-bold text-xl text-black dark:text-white">
               Play again
             </h1>
-            <ul className="flex overflow-x-scroll gap-2">
-              {attempted.map((quiz) => {
-                return (
-                  <li className="flex items-center" key={quiz._id}>
-                    <div className="transform scale-75 origin-top-left md:scale-100 bg-white hover:bg-gray-50 rounded-lg my-3 p-2 py-6 flex items-center cursor-pointer transition duration-500 hover:scale-105">
-                      <Link
-                        href={`/quizSet?quizSetId=${quiz._id}&role=${user.role}&id=${user.id}`}
-                      >
-                        <div className="flex">
-                          <div className="border border-[#ff01fb] rounded-lg p-3">
-                            <AiOutlineFileSearch className="text-[#ff01fb]" />
+            <ul className="flex overflow-x-auto gap-2">
+              {attempted.length > 0 ? (
+                attempted.map((quiz) => {
+                  return (
+                    <li className="flex items-center" key={quiz._id}>
+                      <div className="transform scale-75 origin-top-left md:scale-100 bg-white hover:bg-gray-50 rounded-lg my-3 p-2 py-6 flex items-center cursor-pointer transition duration-500 hover:scale-105">
+                        <Link
+                          href={`/quizSet?quizSetId=${quiz._id}&role=${user.role}&id=${user.id}`}
+                        >
+                          <div className="flex">
+                            <div className="border border-[#ff01fb] rounded-lg p-3">
+                              <AiOutlineFileSearch className="text-[#ff01fb]" />
+                            </div>
+                            <div className="pl-4 px-5">
+                              <p className="text-gray-800 font-bold">
+                                {quiz.title}
+                              </p>
+                              <p className="text-gray-600 text-sm">
+                                {quiz.description}
+                              </p>
+                            </div>
                           </div>
-                          <div className="pl-4 px-5">
-                            <p className="text-gray-800 font-bold">
-                              {quiz.title}
-                            </p>
-                            <p className="text-gray-600 text-sm">
-                              {quiz.description}
-                            </p>
-                          </div>
-                        </div>
-                      </Link>
-                      <button onClick={() => openLeaderboard(quiz._id)}>
-                        <AiOutlineTrophy className="text-[#FFD700] text-3xl" />
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
+                        </Link>
+                        <button onClick={() => openLeaderboard(quiz._id)}>
+                          <AiOutlineTrophy className="text-[#FFD700] text-3xl" />
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })
+              ) : (
+                <h3 className="dark:text-white">Nothing yet</h3>
+              )}
             </ul>
           </div>
         </div>

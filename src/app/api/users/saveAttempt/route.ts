@@ -4,6 +4,7 @@ import UserModel from "../../../../../models/User";
 import { auth } from "@/auth";
 import mongoose from "mongoose";
 import QuizSetModel from "../../../../../models/QuizSet";
+import { ObjectId } from "mongodb";
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
 
       try {
         const newAttempt = await QuizAttemptModel.create({
-          student: session.user.id,
+          student: new ObjectId(session.user.id),
           quizSet: quizSetId,
           responses,
           score,

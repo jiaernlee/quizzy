@@ -297,7 +297,7 @@ const CreateQuiz = () => {
                   setDetails({ ...details, title: e.target.value });
                   setDetailsChanged(true);
                 }}
-                className="rounded-lg p-2 border border-black dark:border-none"
+                className="rounded-lg p-1 w-3/4 border border-black dark:border-none"
               />
             ) : (
               <span className="dark:text-white">{quizSet.title}</span>
@@ -368,11 +368,11 @@ const CreateQuiz = () => {
         <div className="my-5">
           {quizSet.questions.map((question, i) => {
             return (
-              <div className="card flex gap-5 mb-3" key={i}>
+              <div className="card md:flex gap-5 mb-3" key={i}>
                 <h1 className="font-bold text-3xl text-white">{i + 1}</h1>
-                <div>
-                  <h5 className="font-bold">{question.question}</h5>
-                  <ul className="md:flex flex-col gap-3">
+                <div className="justify-center gap-3">
+                  <h5 className="font-bold mb-3">{question.question}</h5>
+                  <ul className="flex flex-col md:flex-row gap-3 my-3 md:my-0">
                     {question.options.map((option, i) => {
                       let isCorrect = false;
                       question.answer.forEach((ans) => {

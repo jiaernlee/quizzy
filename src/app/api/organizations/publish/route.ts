@@ -31,7 +31,7 @@ export async function PUT(req: NextRequest) {
       if (!result || !quizSet)
         return NextResponse.json({ message: "Quiz set not found" });
 
-      await sendMail(orgId, quizSet.code);
+      await sendMail(orgId, quizSet.code, quizSet.title, quizSet.description);
 
       return NextResponse.json({
         message: "Quiz set published successfully",

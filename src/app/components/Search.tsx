@@ -54,7 +54,7 @@ const Search: React.FC<SearchProps> = ({ placeholder, user }) => {
     []
   );
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
+    <div className="relative flex flex-1">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -65,7 +65,6 @@ const Search: React.FC<SearchProps> = ({ placeholder, user }) => {
         defaultValue={searchParams?.get("query")?.toString()}
       />
       <AiOutlineSearch className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#ff01fb]" />
-
       {results.length > 0 && (
         <div className="absolute top-full mt-1 w-full bg-white border border-[#ff01fb] rounded-md z-10 shadow-lg p-2">
           {results.map((result) => (

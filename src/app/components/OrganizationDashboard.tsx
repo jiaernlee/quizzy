@@ -359,7 +359,7 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
                     );
                   })
                 ) : (
-                  <p>No quiz sets found</p>
+                  <p className="dark:text-white">No quiz sets found</p>
                 )}
               </ul>
             )}
@@ -397,7 +397,7 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
                     </li>
                   ))
                 ) : (
-                  <p>No students found</p>
+                  <p className="dark:text-white">No students found</p>
                 )}
               </ul>
             )}

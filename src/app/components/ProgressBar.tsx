@@ -19,7 +19,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           style={{ width: `${accuracy}%` }}
         ></div>
       </div>
-      <p>{accuracy}%</p>
+      <p className=" dark:text-white">{accuracy}%</p>
     </div>
   );
 };
