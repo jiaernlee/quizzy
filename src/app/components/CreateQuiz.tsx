@@ -51,7 +51,7 @@ const CreateQuiz = () => {
       if (quizSetId) {
         try {
           const res = await fetch(
-            `/api/organizations/getQuizById?quizId=${quizSetId}`
+            `/api/organizations/getQuizById/${quizSetId}`
           );
           if (res.ok) {
             const data = await res.json();

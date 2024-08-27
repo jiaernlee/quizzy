@@ -25,7 +25,7 @@ const Leaderboard: React.FC<LeaderBoardProps> = ({ quizSetId, userId }) => {
   useEffect(() => {
     const fetchQuizSet = async () => {
       try {
-        const res = await fetch(`/api/getAttempt?quizId=${quizSetId}`);
+        const res = await fetch(`/api/getAttempt/${quizSetId}`);
         if (res.ok) {
           const data = await res.json();
           setLeaderboard(data);

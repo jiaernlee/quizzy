@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "../../../../../lib/mongodb";
+import clientPromise from "../../../../../../lib/mongodb";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const code = searchParams.get("code");
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { code: string } }
+) {
+  const { code } = params;
 
   if (!code) {
     return NextResponse.json(

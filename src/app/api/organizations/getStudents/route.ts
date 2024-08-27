@@ -8,8 +8,9 @@ export async function GET(request: Request) {
     const db = client.db("test");
     const userCollection = db.collection("users");
 
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get("userId");
+    const url = request.url;
+    const params = new URLSearchParams(url.split("?")[1]);
+    const userId = params.get("userId");
 
     if (!userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });

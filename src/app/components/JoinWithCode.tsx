@@ -13,7 +13,7 @@ export const JoinWithCode = () => {
   ) => {
     if (event.key === "Enter" && code.length === 5) {
       try {
-        const response = await fetch(`/api/users/join?code=${code}`);
+        const response = await fetch(`/api/users/join/${code}`);
         if (response.ok) {
           const data = await response.json();
           router.push(`/quizPage?quiz=${data.quizSet._id}`);

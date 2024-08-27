@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
-import clientPromise from "../../../../../lib/mongodb";
+import clientPromise from "../../../../../../lib/mongodb";
 
 export async function GET(
   request: Request,

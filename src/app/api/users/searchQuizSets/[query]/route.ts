@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "../../../../../lib/mongodb";
+import clientPromise from "../../../../../../lib/mongodb";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const query = searchParams.get("query");
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { query: string } }
+) {
+  const { query } = params;
 
   if (!query) {
     return NextResponse.json(
