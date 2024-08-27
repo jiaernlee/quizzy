@@ -60,7 +60,7 @@ const CreateQuiz = () => {
             setIsPublished(data.isPublished);
             if (userRole === "organization" && userId) {
               const orgRes = await fetch(
-                `/api/organizations/getStudentById?userId=${userId}`
+                `/api/organizations/getStudents/${userId}`
               );
               if (orgRes.ok) {
                 const orgData = await orgRes.json();

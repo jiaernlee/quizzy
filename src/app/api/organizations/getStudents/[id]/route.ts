@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "../../../../../lib/mongodb";
+import clientPromise from "../../../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get("userId");
+    const { id } = params;
     const client = await clientPromise;
     const db = client.db("test");
     const usersCollection = db.collection("users");
 
-    const userObjectId = new ObjectId(userId as string);
+    const userObjectId = new ObjectId(id as string);
 
     const user = await usersCollection.findOne({ _id: userObjectId });
 

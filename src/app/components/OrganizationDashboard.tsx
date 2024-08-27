@@ -111,9 +111,7 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
   useEffect(() => {
     const fetchQuizSets = async () => {
       try {
-        const res = await fetch(
-          `/api/organizations/getAllQuizSets?userId=${user.id}`
-        );
+        const res = await fetch(`/api/organizations/getAllQuizSets/${user.id}`);
         if (res.ok) {
           const data = await res.json();
           console.log("Quiz sets data:", data);
