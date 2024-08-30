@@ -38,7 +38,6 @@ interface QuizStats {
 }
 
 const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
-  console.log(user.id, "from userdashboard");
   const [attempted, setAttempted] = useState<Quiz[]>([]);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [quizSetId, setQuizSetId] = useState<string>("");
@@ -64,7 +63,6 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user }) => {
       try {
         const res = await fetch(`/api/users/getQuizStats?userId=${user.id}`);
         const data = await res.json();
-        console.log(data);
         setQuizStats(data);
         if (!res.ok) console.log(data.error, "savequizstats");
       } catch (e) {

@@ -114,7 +114,6 @@ const OrganizationDashboard: React.FC<OrganizationDashboardProps> = ({
         const res = await fetch(`/api/organizations/getAllQuizSets/${user.id}`);
         if (res.ok) {
           const data = await res.json();
-          console.log("Quiz sets data:", data);
           setQuizSets(data);
         } else {
           console.error("Failed to fetch quiz sets");

@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
   try {
     const session = await auth();
     const { quizSetId, responses, score } = await req.json();
-    console.log("Received data:", { quizSetId, responses, score });
 
     if (session && session.user?.email) {
       await mongoose.connect(process.env.MONGODB_URI!);

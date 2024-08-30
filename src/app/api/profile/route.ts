@@ -97,8 +97,6 @@ export async function PUT(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("userId");
 
-    console.log(name, image);
-
     if (!userId) {
       return NextResponse.json({ error: "Missing user ID" }, { status: 400 });
     }

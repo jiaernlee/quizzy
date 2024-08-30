@@ -65,7 +65,6 @@ const CreateQuiz = () => {
               if (orgRes.ok) {
                 const orgData = await orgRes.json();
                 setOrgId(orgData.orgId);
-                console.log(orgData.orgId);
               }
             }
           } else {

@@ -47,7 +47,6 @@ const Leaderboard: React.FC<LeaderBoardProps> = ({ quizSetId, userId }) => {
 
     fetchQuizSet();
   }, [quizSetId]);
-  console.log(leaderboard);
   return (
     <div className="text-black w-full col-span-1 lg:h-[33vh] h-[23vh] m-auto p-4 border border-[#faff00] overflow-y-scroll rounded-lg">
       <h1 className="font-bold text-xl">Leaderboard</h1>

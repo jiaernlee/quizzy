@@ -85,7 +85,6 @@ const UserProfile = () => {
 
   const saveEditHandler = async () => {
     try {
-      console.log("imhere");
       if (imageFile) {
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -101,7 +100,6 @@ const UserProfile = () => {
           const imagePath = `/uploads/${result.image}`;
           const updatedDetails = { ...details, image: imagePath };
           setDetails(updatedDetails);
-          console.log(updatedDetails);
 
           try {
             const res = await fetch(`/api/profile?userId=${userId}`, {
@@ -144,7 +142,6 @@ const UserProfile = () => {
               name: details.name,
             }),
           });
-          console.log(details.name);
           const data = await res.json();
           if (data) {
             setDetails({

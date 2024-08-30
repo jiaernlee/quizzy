@@ -22,7 +22,7 @@ const Search: React.FC<SearchProps> = ({ placeholder, user }) => {
     if (!query) return setResults([]);
 
     try {
-      const response = await fetch(`/api/users/searchQuizSets?query=${query}`);
+      const response = await fetch(`/api/users/searchQuizSets/${query}`);
       if (!response.ok) {
         console.error("Failed to fetch results:", response.statusText);
         return;
@@ -75,7 +75,6 @@ const Search: React.FC<SearchProps> = ({ placeholder, user }) => {
               <div
                 key={result.id}
                 className="p-2 hover:bg-gray-100 cursor-pointer transition duration-500 hover:scale-105"
-                onClick={() => console.log(`Selected ${result._id}`)}
               >
                 <p className="font-bold text-black text-xl">{result.title}</p>
                 <p className="text-sm text-gray-600">{result.description}</p>
